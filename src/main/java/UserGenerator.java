@@ -1,16 +1,17 @@
+import com.github.javafaker.Faker;
+
 public class UserGenerator {
 
     public static User getUserData() {
-        User user = new User();
-        user.setEmail("test28081818@yandex.ru");
-        user.setName("Username");
-        user.setPassword("password");
-        return user;
+        Faker faker = new Faker();
+        return new User(faker.internet().emailAddress(),
+                faker.internet().password(),
+                faker.name().firstName());
     }
 
     public static User getExtraUserData() {
         User extraUser = new User();
-        extraUser.setEmail("test29081646@yandex.ru");
+        extraUser.setEmail("sameemailtest@yandex.ru");
         extraUser.setName("Username");
         extraUser.setPassword("password");
         return extraUser;

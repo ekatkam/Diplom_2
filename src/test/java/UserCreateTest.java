@@ -1,3 +1,5 @@
+import io.qameta.allure.Description;
+import io.qameta.allure.junit4.DisplayName;
 import io.restassured.response.ValidatableResponse;
 import org.junit.Before;
 import org.junit.Test;
@@ -16,6 +18,8 @@ public class UserCreateTest {
     }
 
     @Test
+    @DisplayName("Check user creating")
+    @Description("Test checks successful user creating")
     public void userCreate() {
         ValidatableResponse userCreateResponse = userClient.create(user);
         int userCreateResponseStatusCode = step.getStatusCode(userCreateResponse);
@@ -31,6 +35,8 @@ public class UserCreateTest {
     }
 
     @Test
+    @DisplayName("Check creating of the same user twice")
+    @Description("Test checks creating of the same user twice and getting the error")
     public void createSameUser() {
         ValidatableResponse userCreateResponse = userClient.create(user);
         String accessToken = step.getAccessToken(userCreateResponse);
@@ -45,6 +51,8 @@ public class UserCreateTest {
     }
 
     @Test
+    @DisplayName("Check creating user with empty email")
+    @Description("Test checks creating user with empty email and getting the error")
     public void createUserWithoutEmail() {
         user.setEmail("");
         ValidatableResponse userCreateResponse = userClient.create(user);
@@ -56,6 +64,8 @@ public class UserCreateTest {
     }
 
     @Test
+    @DisplayName("Check creating user with empty password")
+    @Description("Test checks creating user with empty password and getting the error")
     public void createUserWithoutPassword() {
         user.setPassword("");
         ValidatableResponse userCreateResponse = userClient.create(user);
@@ -67,6 +77,8 @@ public class UserCreateTest {
     }
 
     @Test
+    @DisplayName("Check creating user with empty name")
+    @Description("Test checks creating user with empty name and getting the error")
     public void createUserWithoutName() {
         user.setName("");
         ValidatableResponse userCreateResponse = userClient.create(user);

@@ -1,3 +1,5 @@
+import io.qameta.allure.Description;
+import io.qameta.allure.junit4.DisplayName;
 import io.restassured.response.ValidatableResponse;
 import org.junit.After;
 import org.junit.Before;
@@ -28,6 +30,8 @@ public class UserLoginTest {
     }
 
     @Test
+    @DisplayName("Check successful login")
+    @Description("Test checks successful login with correct credentials")
     public void login() {
         ValidatableResponse loginResponse = userClient.login(UserCredentials.from(user));
         int loginStatusCode = step.getStatusCode(loginResponse);
@@ -40,6 +44,8 @@ public class UserLoginTest {
     }
 
     @Test
+    @DisplayName("Check unsuccessful login")
+    @Description("Test checks that unsuccessful login with wrong email returns the error")
     public void loginWithWrongEmail() {
         user.setEmail("wrongEmail@yandex.ru");
         ValidatableResponse loginResponse = userClient.login(UserCredentials.from(user));
@@ -51,6 +57,8 @@ public class UserLoginTest {
     }
 
     @Test
+    @DisplayName("Check unsuccessful login")
+    @Description("Test checks that unsuccessful login with wrong password returns the error")
     public void loginWithWrongPassword() {
         user.setPassword("wrongPassword");
         ValidatableResponse loginResponse = userClient.login(UserCredentials.from(user));
@@ -62,6 +70,8 @@ public class UserLoginTest {
     }
 
     @Test
+    @DisplayName("Check unsuccessful login")
+    @Description("Test checks that unsuccessful login with empty email returns the error")
     public void loginWithoutEmail() {
         user.setEmail("");
         ValidatableResponse loginResponse = userClient.login(UserCredentials.from(user));
@@ -73,6 +83,8 @@ public class UserLoginTest {
     }
 
     @Test
+    @DisplayName("Check unsuccessful login")
+    @Description("Test checks that unsuccessful login with empty password returns the error")
     public void loginWithoutPassword() {
         user.setPassword("");
         ValidatableResponse loginResponse = userClient.login(UserCredentials.from(user));

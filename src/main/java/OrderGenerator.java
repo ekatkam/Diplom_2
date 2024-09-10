@@ -1,7 +1,14 @@
+import io.restassured.response.ValidatableResponse;
+
 public class OrderGenerator {
 
+    private static IngredientsClient ingredientsClient = new IngredientsClient();
+    private static ValidatableResponse getIngredientResponse = ingredientsClient.getIngredientList();
+    private static String ingredient1 = getIngredientResponse.extract().body().path("data[0]._id");
+    private static String ingredient2 = getIngredientResponse.extract().body().path("data[1]._id");
+
     public static Order getOrderWith2Ingredients() {
-        Order order = new Order(new String[]{"61c0c5a71d1f82001bdaaa6d", "61c0c5a71d1f82001bdaaa6f"});
+        Order order = new Order(new String[]{ingredient1, ingredient2});
         return order;
     }
 

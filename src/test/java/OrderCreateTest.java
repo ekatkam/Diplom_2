@@ -1,3 +1,5 @@
+import io.qameta.allure.Description;
+import io.qameta.allure.junit4.DisplayName;
 import io.restassured.response.ValidatableResponse;
 import org.junit.Before;
 import org.junit.Test;
@@ -17,6 +19,8 @@ public class OrderCreateTest {
     }
 
     @Test
+    @DisplayName("Check creating an order without authorization")
+    @Description("Test checks creating an order without authorization")
     public void orderCreateUnauth() {
         order = OrderGenerator.getOrderWith2Ingredients();
         ValidatableResponse orderCreateResponse = orderClient.createOrder(order);
@@ -28,6 +32,8 @@ public class OrderCreateTest {
     }
 
     @Test
+    @DisplayName("Check creating an order with authorization")
+    @Description("Test checks creating an order with authorization")
     public void orderCreateAuth() {
         order = OrderGenerator.getOrderWith2Ingredients();
         userClient = new UserClient();
@@ -50,6 +56,8 @@ public class OrderCreateTest {
     }
 
     @Test
+    @DisplayName("Check creating an order without ingredients")
+    @Description("Test checks creating an order without ingredients")
     public void orderCreateWithNoIngredients() {
         order = OrderGenerator.getOrderWithNoIngredients();
         ValidatableResponse orderCreateResponse = orderClient.createOrder(order);
@@ -61,6 +69,8 @@ public class OrderCreateTest {
     }
 
     @Test
+    @DisplayName("Check creating an order with wrong ingredient hash")
+    @Description("Test checks creating an order with wrong ingredient hash")
     public void orderCreateWithWrongIngredientHash() {
         order = OrderGenerator.getOrderWithWrongIngredientHash();
         ValidatableResponse orderCreateResponse = orderClient.createOrder(order);

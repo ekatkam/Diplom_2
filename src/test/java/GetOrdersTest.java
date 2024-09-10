@@ -1,3 +1,5 @@
+import io.qameta.allure.Description;
+import io.qameta.allure.junit4.DisplayName;
 import io.restassured.response.ValidatableResponse;
 import org.junit.Before;
 import org.junit.Test;
@@ -17,6 +19,8 @@ public class GetOrdersTest {
     }
 
     @Test
+    @DisplayName("Check order list with authorization")
+    @Description("Test checks getting list of orders for authorized user")
     public void checkOrderListAuth() {
        order = OrderGenerator.getOrderWith2Ingredients();
        userClient = new UserClient();
@@ -41,6 +45,8 @@ public class GetOrdersTest {
     }
 
     @Test
+    @DisplayName("Check order list without authorization")
+    @Description("Test checks getting list of orders for unauthorized user")
     public void checkOrderListUnauth() {
        ValidatableResponse orderListResponse = orderClient.getOrderListUnauth();
        int orderListResponseStatusCode = step.getStatusCode(orderListResponse);
